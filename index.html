@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Analiza Obrazów - projekt</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="shortcut icon" href="icon.jpg" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container--canvas">
+      <label>
+        <div class="canvas-empty">
+          <input type="file" name="file" id="file">
+          <h2>Kliknij, aby wczytać obraz</h2>
+        </div>
+      </label>
+      <canvas id="canvas" width="1" height="1"></canvas>
+      <a onclick="onSaveFile()" class="save-btn disabled" download="edytowany-obraz.jpg"><i class="far fa-save"></i>Zapisz</a>
+    </div>
+
+    <div class="container--controls">
+
+      <div class="controls">
+        <div class="controls__slider sliders-container">
+          <input type="range" min="-255" max="255" class="slider" oninput="onChangeBrightness(this.value)" id="brightness-slider">
+          <input type="range" min="0" max="5" step="0.05" class="slider" oninput="onChangeContrast(this.value)" id="contrast-slider">
+          <input type="range" min="0" max="2.5" step="0.01" class="slider" oninput="onChangeGamma(this.value)" id="gamma-slider">
+          <input type="range" min="-255" max="255" class="slider" oninput="onChangeHueR(this.value)" id="hue-slider-r">
+          <input type="range" min="-255" max="255" class="slider" oninput="onChangeHueG(this.value)" id="hue-slider-g">
+          <input type="range" min="-255" max="255" class="slider" oninput="onChangeHueB(this.value)" id="hue-slider-b">
+          <input type="range" min="0" max="255" class="slider" oninput="onChangeBinary(this.value)" id="binary-slider">
+          <label class="checkbox">
+            <input type="checkbox" name="checkbox" value="grayscale" onclick="onChangeFilter(this.value, this.checked)" id="grayscale-checkbox">
+            <span class="checkmark"></span>
+            Skala szarości
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" name="checkbox" value="negative" onclick="onChangeFilter(this.value, this.checked)" id="negative-checkbox">
+            <span class="checkmark"></span>
+            Negatyw
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" name="checkbox" value="sepia" onclick="onChangeFilter(this.value, this.checked)" id="sepia-checkbox">
+            <span class="checkmark"></span>
+            Sepia
+          </label>
+
+        </div>
+
+        <div class="controls__button">
+          <label>
+            <input type="radio" name="option" value="brightness" disabled>
+            <i class="fas fa-sun"></i>
+            Jasność
+          </label>
+        </div>
+        <div class="controls__button">
+          <label>
+            <input type="radio" name="option" value="contrast" disabled>
+            <i class="fas fa-adjust"></i>
+            Kontrast
+          </label>
+        </div>
+        <div class="controls__button">
+          <label>
+            <input type="radio" name="option" value="gamma" disabled>
+            <i class="fas fa-fill"></i>
+            Gamma
+          </label>
+        </div>
+        <div class="controls__button">
+          <label>
+            <input type="radio" name="option" value="hue" disabled>
+            <i class="fas fa-palette"></i>
+            Odcień
+          </label>
+        </div>
+        <div class="controls__button">
+          <label>
+            <input type="radio" name="option" value="filters" disabled>
+            <i class="fas fa-magic"></i>
+            Filtry
+          </label>
+        </div>
+        <div class="controls__button">
+          <label>
+            <input type="radio" name="option" value="binary" disabled>
+            <i class="fab fa-delicious"></i>
+            Progowanie
+          </label>
+        </div>
+      </div>
+
+      <p class="docs-link" onclick="onDocsOpen()">
+        Dokumentacja
+      </p>
+
+      <div class="docs-container">
+        <div class="docs">
+          <i class="icon fas fa-times" onclick="onDocsClose()"></i>
+          <h4>Zawartość merytoryczna projektu</h4>
+          Tematem projektu było stworzenie programu zdolnego do wykonywania podstawowych operacji na obrazach. <br />
+          Do implementacji funkcji modyfikujących obraz wykorzystaliśmy język JavaScript. GUI powstało przy użyciu technologii webowych: HTML5 i CSS3.
+          <h4>Funkcjonalności podstawowe</h4>
+          1) Wczytanie dowolnego zdjęcia z dysku (trzy przykładowe zdjęcia)<br />
+          2) Zapisanie zdjęcia po skończeniu edycji
+          <h4>Modyfikacja obrazów</h4>
+          1) Regulacja jasności <br />
+          2) Regulacja kontrastu <br />
+          3) Zmiana korekcji gamma <br />
+          4) Regulacja kanałów barwnych RGB <br />
+          5) Filtry (obraz w odcieniach szarości, negatyw, sepia) <br />
+          6) Binaryzacja obrazu z regulacją progu <br />
+          W programie nie została użyta żadna gotowa funkcja (operacje wykonywane na tablicy pikseli).
+          <br /> <br /> <br />
+          Autorzy: <b>Karolina Placek</b>, <b>Karol Pogwizd</b>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="functions.js"></script>
+  </body>
+</html>
